@@ -6,7 +6,7 @@
 //메뉴얼 고유 번호 지정 
 #define MAIN_MENU 0
 #define EXIT_REENTER 1 
-
+#define EXIT 2
 //책 정보 구조체 
 typedef struct {
 	char title[1000];
@@ -32,6 +32,12 @@ void printManual(int whichManual){
 		printf("----------------------\n\n");
 		printf("    0. EXIT              \n");
 		printf("    1. RE-ENTER          \n\n");
+		printf("----------------------\n\n");
+	}
+	
+	else if  (whichManual == EXIT){
+		printf("----------------------\n\n");
+		printf("    0. EXIT              \n");
 		printf("----------------------\n\n");
 	}
 		
@@ -77,12 +83,15 @@ void addNew_Book(){
 	//책 제목, 코드, 장르 입력 
 	system("cls");
 	printf("\n\n\n\n\n\n"); 
+	//에러 포인트 ( 입력 안 시키고도 이미 입력 되서... 
+	//아무 데이터도 입력 불가능
 	printf("    ENTER BOOK TITLE : ");
-	scanf("%[^\n]" ,b[cntFor_Books].title);
+	//fgets(b[cntFor_Books].title,1000,stdin); 
+	scanf("%s" ,b[cntFor_Books].title);
 	printf("\n    ENTER BOOK CODE : ");
-	scanf("%[^\n]",b[cntFor_Books].code);
+	scanf("%s",b[cntFor_Books].code);
 	printf("\n    ENTER BOOK GENRE : ");
-	scanf("%[^\n]",b[cntFor_Books].genre);
+	scanf("%s",b[cntFor_Books].genre);
 	
 	//저장 여부 
 	printf("\n\n[%s]    [%s]   [%s]\n" ,b[cntFor_Books].title,b[cntFor_Books].code,b[cntFor_Books].genre);
@@ -132,8 +141,19 @@ void addNew_Book(){
 //책 출력 함수
 void printBooks(){
 	int i;
-	printf("    TITLE               CODE              GENRE\n\n");
+	system("cls");
+	printf("\n\n\n\n\n\n");
+	printf("    TITLE\tCODE\t\tGENRE\n\n");
 	for (i=0; i<cntFor_Books; i++){
-			printf("    [%s]    [%s]   [%s]\n" ,b[i].title,b[i].code,b[i].genre);
+			printf("    [%s]\t[%s]\t[%s]\n" ,b[i].title,b[i].code,b[i].genre);
 	} 
+	printManual(EXIT);
+	
+	int mode;
+	printf("ENTER MODE : ");
+	scanf("%d",&mode);
+	if (mode == 0){
+			system("cls");
+			return ;
+	}
 } 

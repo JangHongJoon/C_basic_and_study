@@ -1,7 +1,6 @@
 #include <stdio.h>
 int main(){
-	char arr[100];
-	scanf("%[^\n]",arr);
-	printf("%s\n",arr);
-	
+	char im='A';
+	im=getchar();
+	printf("%d\n",im);
 } 
