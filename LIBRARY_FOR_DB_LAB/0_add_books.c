@@ -2,7 +2,7 @@
 
 #define REGISTER_NEW_BOOK 0
 #define SHOW_BOOKS 1
-
+#define SEARCH_BOOKS 2
 //메뉴얼 고유 번호 지정 
 #define MAIN_MENU 0
 #define EXIT_REENTER 1 
@@ -24,6 +24,7 @@ void printManual(int whichManual){
 		printf("----------------------\n\n");
 		printf("    0. REGISTER NEW BOOK\n\n");
 		printf("    1. SHOW BOOKS\n\n");
+		printf("    2. SEARCH BOOKS\n\n");
 		printf("----------------------\n\n");
 		
 	}
@@ -45,7 +46,7 @@ void printManual(int whichManual){
 
 void addNew_Book(); //책 정보 입력 함수 
 void printBooks(); //책 출력 함수 
-
+void searchBooks(); // 책 검색 및 출력 함수 
 BOOK b[100000]; 
 
 int main(){
@@ -64,8 +65,15 @@ int main(){
 			case REGISTER_NEW_BOOK :
 				addNew_Book();
 				break;
+			
 			case SHOW_BOOKS :
 				printBooks();
+				break;
+			
+			case SEARCH_BOOKS : 
+				searchBooks();
+				break;
+				
 			default :
 				break;			
 		}
@@ -92,7 +100,7 @@ void addNew_Book(){
 	scanf("%s",b[cntFor_Books].code);
 	printf("\n    ENTER BOOK GENRE : ");
 	scanf("%s",b[cntFor_Books].genre);
-	
+
 	//저장 여부 
 	printf("\n\n[%s]    [%s]   [%s]\n" ,b[cntFor_Books].title,b[cntFor_Books].code,b[cntFor_Books].genre);
 	printf("\nSAVE? (Y/n) : ");
@@ -143,10 +151,11 @@ void printBooks(){
 	int i;
 	system("cls");
 	printf("\n\n\n\n\n\n");
-	printf("    TITLE\tCODE\t\tGENRE\n\n");
+	printf("    TITLE\t\tCODE\t\tGENRE\n\n");
 	for (i=0; i<cntFor_Books; i++){
 			printf("    [%s]\t[%s]\t[%s]\n" ,b[i].title,b[i].code,b[i].genre);
 	} 
+	printf("\n");
 	printManual(EXIT);
 	
 	int mode;
@@ -157,3 +166,12 @@ void printBooks(){
 			return ;
 	}
 } 
+
+// 책 검색 및 출력 함수
+void searchBooks(){
+	char searchKey[1000];
+	
+	scanf("%s",searchKey);
+	return ;
+} 
+ 
