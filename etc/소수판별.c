@@ -1,16 +1,20 @@
 #include <stdio.h>
 int main(){
-	int n;
-	scanf("%d" ,&n);
 	
-	int i,sw=1;
-	for (i=2; i*i<=n; i++){
-		if (n%i==0) {
-			sw=0; 
-			break;
-		}
+	int i,j,sw=1;
+	int cnt=0;
+	
+	for (j=1; j<=1000000; j++){
+		for (i=2; i*i<=j; i++){
+			if (j%i==0) {
+					sw=0; 
+					break;
+				}
+			}
+		if (sw==1) cnt++;
+		sw=1;	
 	}
-	if (sw==1) printf("소수입니다\n");
-	else printf("소수가 아닙니다\n");
+	
+	printf("1부터 1000000까지 소수 개수 : %d",cnt);
 	return 0; 
 } 
