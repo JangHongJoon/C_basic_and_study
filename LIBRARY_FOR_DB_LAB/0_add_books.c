@@ -1,4 +1,5 @@
 #include <stdio.h>
+#include <string.h>
 
 #define REGISTER_NEW_BOOK 0
 #define SHOW_BOOKS 1
@@ -7,6 +8,8 @@
 #define MAIN_MENU 0
 #define EXIT_REENTER 1 
 #define EXIT 2
+#define EXIT_RESEARCH 3
+
 //책 정보 구조체 
 typedef struct {
 	char title[1000];
@@ -41,6 +44,13 @@ void printManual(int whichManual){
 		printf("    0. EXIT              \n");
 		printf("----------------------\n\n");
 	}
+	
+	else if (whichManual == EXIT_RESEARCH){
+		printf("----------------------\n\n");
+		printf("    0. EXIT              \n");
+		printf("    1. RE-SEARCH          \n\n");
+		printf("----------------------\n\n");
+	}
 		
 } 
 
@@ -48,6 +58,7 @@ void addNew_Book(); //책 정보 입력 함수
 void printBooks(); //책 출력 함수 
 void searchBooks(); // 책 검색 및 출력 함수 
 BOOK b[100000]; 
+BOOK sK[100000];
 
 int main(){
 	
@@ -159,7 +170,7 @@ void printBooks(){
 	printManual(EXIT);
 	
 	int mode;
-	printf("ENTER MODE : ");
+	printf("    ENTER MODE : ");
 	scanf("%d",&mode);
 	if (mode == 0){
 			system("cls");
@@ -169,9 +180,30 @@ void printBooks(){
 
 // 책 검색 및 출력 함수
 void searchBooks(){
+	re_enterKeyword:
+	system("cls");
 	char searchKey[1000];
 	
+	printf("\n\n\n\n\n\n"); 
+	printf("    ENTER KEYWORD : ");
 	scanf("%s",searchKey);
+	printf("\n\n\n");
+	int i;
+	for (i=0; i<cntFor_Books; i++){
+			if (strstr(b[i].title,searchKey))
+				printf("    [%s]\t[%s]\t[%s]\n" ,b[i].title,b[i].code,b[i].genre);
+	} 
+	printManual(EXIT_RESEARCH);
+	
+	int mode;
+	printf("    ENTER MODE : ");
+	scanf("%d",&mode);
+	
+	if (mode == 0)
+		system("cls");
+	else if (mode == 1)
+		goto re_enterKeyword;
+	
 	return ;
 } 
  
